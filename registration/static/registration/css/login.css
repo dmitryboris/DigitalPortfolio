@@ -30,12 +30,24 @@ input[type=text] {
     border: 2px solid grey;
     border-radius: 25px;
     background-color: #F8F8F8;
-    background-image: url('searchicon.png');
-    background-position: 10px 10px;
+    background-position: 3% 50%;
     background-repeat: no-repeat;
     padding-left: 40px;
 }
 
+.field-email {
+    background: url('../img/email.png') no-repeat 5px 5px;
+}
+
+.field-password {
+    background-image: url('../img/password.png');
+}
+.field-nickname {
+    background: url('../img/nick.png') no-repeat 5px 5px;
+}
+.field-name {
+    background: url('../img/name.png') no-repeat 5px 5px;
+}
 /*input[type=text]:focus {
   border: 3px solid black;
 }*/
