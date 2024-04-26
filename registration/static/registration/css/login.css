@@ -12,7 +12,7 @@ body {
     text-align: center;
     color: white;
     background-color: #43AC71;
-    font: bold 15px/35px Arial;
+    font: bold 20px/45px Manrope;
     position: relative;
     border-radius: 25px;
 }
@@ -20,3 +20,22 @@ body {
 .button:hover {
     background: #6CC291;
 }
+
+input[type=text] {
+    width: 562px;
+    height: 42px;
+    padding: 12px 0px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid grey;
+    border-radius: 25px;
+    background-color: #F8F8F8;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding-left: 40px;
+}
+
+/*input[type=text]:focus {
+  border: 3px solid black;
+}*/
