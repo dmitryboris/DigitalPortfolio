@@ -1,4 +1,5 @@
 {% extends "main/sample.html" %}
+{% load static %}
 
 {% block title %}
     Digital Portfolio
@@ -7,8 +8,15 @@
 {% block body %}
     <main>
         <h1> Digital Portfolio </h1>
-        <p> Home page </p>
-        <a href="/reg/login" class="btn btn-primary"> Авторизация </a>
-        <a href="/reg/signup" class="btn btn-primary"> Регистрация </a>
+        <h2> Веб-сервис для организации, хранения и публикации проектов</h2>
+        <p> С помощью сервиса вы сможете хранить свои достижения в одном месте,
+            обмениваться ими и привлекать клиентов. </p>
+        <div class="buttons">
+            <a href="/reg/login" class="btn btn-primary"> Авторизация </a>
+            <a href="/reg/signup" class="btn btn-primary"> Регистрация </a>
+        </div>
+        <section class="image">
+            <img src="{% static './registration/img/Frame33.png' %}" width="1096" height="1080" alt="Картиночка">
+        </section>
     </main>
 {% endblock %}
