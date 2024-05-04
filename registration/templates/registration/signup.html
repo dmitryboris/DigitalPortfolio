@@ -1,13 +1,15 @@
+{% extends "registration/sample.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'registration/css/login.css' %}">
-    <title>Join</title>
-</head>
-<body>
+
+{% block title %}
+    Join us
+{% endblock %}
+
+{% block extra_styles %}
+    <link rel="stylesheet" href="{% static 'registration/css/signup.css' %}">
+{% endblock %}
+
+{% block body %}
     <main>
         <ul class="registration-window">
             <li>
@@ -32,7 +34,7 @@
                             </div>
                         </div>
                         <div class="form-button">
-                            <button class="button"> Войти </button>
+                            <button class="button"> Зарегестрироваться </button>
                         </div>
                         <div>
                             <a href="/reg/login" target="_self"> Наш пользователь? </a>
@@ -47,5 +49,4 @@
             </li>
         </ul>
     </main>
-</body>
-</html>
+{% endblock %}

@@ -55,12 +55,7 @@ input[type=text] {
 .field-password {
     background-image: url('../img/password.png');
 }
-.field-nickname {
-    background: url('../img/nick.png') no-repeat 5px 5px;
+
+a {
+    color: grey;
 }
-.field-name {
-    background: url('../img/name.png') no-repeat 5px 5px;
-}
-/*input[type=text]:focus {
-  border: 3px solid black;
-}*/
