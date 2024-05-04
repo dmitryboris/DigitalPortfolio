@@ -29,6 +29,10 @@ li{
 .button:hover {
     background: #6CC291;
 }
+.button-forget {
+    width: 240px;
+    height: 50px;
+}
 
 input[type=text] {
     width: 562px;
