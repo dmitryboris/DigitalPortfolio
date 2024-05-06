@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user.username }}</title>
+</head>
+<body>
+    <h1> Это страница - {{ user.username }} </h1>
+    <form method="post" action="{% url 'logout' %}?next=/reg/profile">
+        <div class="form-button">
+            {% csrf_token %}
+            <button class="button"> Logout </button>
+        </div>
+    </form>
+</body>
+</html>

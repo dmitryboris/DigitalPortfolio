@@ -2,32 +2,38 @@
 {% load static %}
 
 {% block title %}
-    Sign in
+    Login
 {% endblock %}
 
 {% block body %}
     <main>
+        {% if form.errors %}
+            <p>Your username and password didn't match. Please try again.</p>
+        {% endif %}
         <ul class="registration-window">
             <li>
                 <section class="register">
                     <div class="register-form-container">
                         <h1> Вход </h1>
                         <div class="form-fields">
-                            <div class="form-field">
-                                <input type="text" placeholder="Email" class="field-email">
-                            </div>
-                            <div class="form-field">
-                                <input type="text" placeholder="Password" class="field-password">
-                            </div>
-                            <div class="forget">
-                                <a href="/reg/forget" target="_self">Забыли пароль?</a>
-                            </div>
+                            <form method="post" action="{% url 'login' %}">
+                                {% csrf_token %}
+                                <div class="form-field">
+                                    <input type="text" placeholder="Username" class="field-email" name="username">
+                                </div>
+                                <div class="form-field">
+                                    <input type="text" placeholder="Password" class="field-password" name="password">
+                                </div>
+                                <div class="form-button">
+                                    <button class="button"> Войти </button>
+                                </div>
+                            </form>
                         </div>
-                        <div class="form-button">
-                            <button class="button"> Войти </button>
+                        <div class="forget">
+                            <a href="{% url 'password_reset' %}" target="_self">Забыли пароль?</a>
                         </div>
                         <div>
-                            <a href="/reg/signup" target="_self"> Первый раз у нас? </a>
+                            <a href="{% url 'register' %}" target="_self"> Первый раз у нас? </a>
                         </div>
                     </div>
                 </section>
