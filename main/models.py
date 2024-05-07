@@ -1,5 +1,5 @@
-from django.conf import settings
 from django.db import models
+from dPortfolio import settings
 
 
 class Achievements(models.Model):

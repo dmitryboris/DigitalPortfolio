@@ -16,7 +16,7 @@
                     <div class="register-form-container">
                         <h1> Вход </h1>
                         <div class="form-fields">
-                            <form method="post" action="{% url 'login' %}">
+                            <form method="post" action="{% url 'login' %}?next={{ request.path }}">
                                 {% csrf_token %}
                                 <div class="form-field">
                                     <input type="text" placeholder="Username" class="field-email" name="username">

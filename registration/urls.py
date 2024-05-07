@@ -1,8 +1,8 @@
-from .views import register, login, profile_view, password_reset, RegisterView
+from .views import login_view, RegisterView, UserDetailView
 from django.urls import path
 
 urlpatterns = [
-    # path('password_reset/', password_reset, name='password_reset'),
-    path('profile/', profile_view, name="profile"),
+    # path('profile/', profile_view, name="profile"),
     path('register/', RegisterView.as_view(), name="register"),
+    path('<str:username>/', login_view, name='user-detail')
 ]

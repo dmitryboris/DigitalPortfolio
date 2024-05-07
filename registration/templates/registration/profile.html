@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ user.username }}</title>
+    <title>{{ owner.username }}</title>
 </head>
 <body>
-    <h1> Это страница - {{ user.username }} </h1>
+    <h1> Это страница - {{ owner.username }} </h1>
     <form method="post" action="{% url 'logout' %}?next=/reg/profile">
         <div class="form-button">
             {% csrf_token %}
