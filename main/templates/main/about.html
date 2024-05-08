@@ -2,29 +2,39 @@
 {% load static %}
 
 {% block title %}
-    dmitry
+dmitry
 {% endblock %}
-
 
 {% block extra_styles %}
-    <link rel="stylesheet" href="{% static 'main/css/about.css' %}">
+<link rel="stylesheet" href="{% static 'main/css/about.css' %}">
 {% endblock %}
+
 {% block body %}
-    <main>
-        <h1> Страница dmirty </h1>
-        <ul class="achievements">
-        {% for ach in achievements %}
-            <li>
-                 <div class="card">
-                      <a href="{{ ach.file }}"><img src="{{ ach.preview.url }}" alt="Avatar" style="width:100%"></a>
-                      <div class="container">
-                        <h4><b>{{ ach.title }}</b></h4>
+<main>
+    <h1> Страница dmitry </h1>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Поиск</span>
+        </div>
+        <input type="text" class="form-control" placeholder="" aria-label="Username"
+               aria-describedby="basic-addon1">
+    </div>
+    <div class="container mx-auto mt-4">
+        <div class="row">
+            {% for ach in achievements %}
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <a href="{{ ach.file }}"><img src="{{ ach.preview.url }}" class="card-img-top" alt="..."></a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ ach.title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ ach.pub_date }}</h6>
                         <p> Просмотры - {{ ach.views }} </p>
                         <p> Лайки - {{ ach.likes }} </p>
-                      </div>
-                 </div>
-            </li>
-        {% endfor %}
-        </ul>
-    </main>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
 {% endblock %}
