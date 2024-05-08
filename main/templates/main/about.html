@@ -1,0 +1,30 @@
+{% extends "main/sample.html" %}
+{% load static %}
+
+{% block title %}
+    dmitry
+{% endblock %}
+
+
+{% block extra_styles %}
+    <link rel="stylesheet" href="{% static 'main/css/about.css' %}">
+{% endblock %}
+{% block body %}
+    <main>
+        <h1> Страница dmirty </h1>
+        <ul class="achievements">
+        {% for ach in achievements %}
+            <li>
+                 <div class="card">
+                      <a href="{{ ach.file }}"><img src="{{ ach.preview.url }}" alt="Avatar" style="width:100%"></a>
+                      <div class="container">
+                        <h4><b>{{ ach.title }}</b></h4>
+                        <p> Просмотры - {{ ach.views }} </p>
+                        <p> Лайки - {{ ach.likes }} </p>
+                      </div>
+                 </div>
+            </li>
+        {% endfor %}
+        </ul>
+    </main>
+{% endblock %}

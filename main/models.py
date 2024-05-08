@@ -4,7 +4,8 @@ from django.db import models
 
 class Achievements(models.Model):
     title = models.CharField(max_length=50)
-    image = models.ImageField()
+    preview = models.ImageField(null=True)
+    file = models.FileField()
     pub_date = models.DateTimeField(auto_now_add=True)
     likes = models.IntegerField(default=0)
     views = models.IntegerField(default=0)

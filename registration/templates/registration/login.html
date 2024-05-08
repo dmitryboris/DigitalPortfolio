@@ -2,47 +2,45 @@
 {% load static %}
 
 {% block title %}
-    Login
+Login
 {% endblock %}
 
 {% block body %}
-    <main>
-        {% if form.errors %}
-            <p>Your username and password didn't match. Please try again.</p>
-        {% endif %}
-        <ul class="registration-window">
-            <li>
-                <section class="register">
-                    <div class="register-form-container">
-                        <h1> Вход </h1>
-                        <div class="form-fields">
-                            <form method="post" action="{% url 'login' %}">
-                                {% csrf_token %}
-                                <div class="form-field">
-                                    <input type="text" placeholder="Username" class="field-email" name="username">
-                                </div>
-                                <div class="form-field">
-                                    <input type="text" placeholder="Password" class="field-password" name="password">
-                                </div>
-                                <div class="form-button">
-                                    <button class="button"> Войти </button>
-                                </div>
-                            </form>
+<main>
+    <ul class="registration-window">
+        <li>
+            <div class="register-form-container">
+                <h1> Вход </h1>
+                <div class="form-fields">
+                    <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <div class="form-field">
+                            <input type="text" placeholder="Username" class="field-email" name="username">
                         </div>
-                        <div class="forget">
-                            <a href="{% url 'password_reset' %}" target="_self">Забыли пароль?</a>
+                        <div class="form-field">
+                            <input type="text" placeholder="Password" class="field-password" name="password">
                         </div>
-                        <div>
-                            <a href="{% url 'register' %}" target="_self"> Первый раз у нас? </a>
+                        <div class="form-button">
+                            <button class="button"> Войти</button>
                         </div>
-                    </div>
-                </section>
-            </li>
-            <li>
-                <section class="image">
-                    <img src="{% static 'registration/img/Frame32.png' %}" width="850" height="750" alt="Картиночка">
-                </section>
-            </li>
-        </ul>
-    </main>
+                    </form>
+                </div>
+                <div class="forget">
+                    <a href="{% url 'password_reset' %}" target="_self">Забыли пароль?</a>
+                </div>
+                <div>
+                    <a href="{% url 'register' %}" target="_self"> Первый раз у нас? </a>
+                </div>
+                {% if form.errors %}
+                    <p>Your username and password didn't match. Please try again.</p>
+                {% endif %}
+            </div>
+        </li>
+        <li>
+            <section class="image">
+                <img src="{% static 'registration/img/Frame32.png' %}" width="100%" height="100%" alt="Картиночка">
+            </section>
+        </li>
+    </ul>
+</main>
 {% endblock %}
