@@ -10,37 +10,36 @@ Login
     <ul class="registration-window">
         <li>
             <div class="register-form-container">
-                <h1> Вход </h1>
-                <div class="form-fields">
+                <h1 class="title"> Вход </h1>
                     <form method="post" action="{% url 'login' %}">
                         {% csrf_token %}
-                        <div class="form-field">
-                            <input type="text" placeholder="Username" class="field-email" name="username">
-                        </div>
-                        <div class="form-field">
-                            <input type="text" placeholder="Password" class="field-password" name="password">
-                        </div>
-                        <div class="form-button">
-                            <button class="button"> Войти</button>
+                        <div class="form-fields">
+                            <div class="form-field username">
+                                <input type="text" placeholder="Username" class="field-email" name="username">
+                            </div>
+                            <div class="form-field password">
+                                <input type="text" placeholder="Password" class="field-password" name="password">
+                            </div>
+                            <div class="form-button enter-button">
+                                <button class="button"> Войти</button>
+                            </div>
+                            <div class="forget">
+                                <a class="forget-password" href="{% url 'password_reset' %}" target="_self">Забыли пароль?</a>
+                            </div>
+                            <div class="first-time">
+                                <p>Первый раз у нас?</p>
+                                <a href="{% url 'register' %}" target="_self"> Зарегестрироваться </a>
+                            </div>
                         </div>
                     </form>
-                </div>
-                <div class="forget">
-                    <a href="{% url 'password_reset' %}" target="_self">Забыли пароль?</a>
-                </div>
-                <div>
-                    <a href="{% url 'register' %}" target="_self"> Первый раз у нас? </a>
-                </div>
                 {% if form.errors %}
                     <p>Your username and password didn't match. Please try again.</p>
                 {% endif %}
             </div>
         </li>
-        <li>
-            <section class="image">
-                <img src="{% static 'registration/img/Frame32.png' %}" width="100%" height="100%" alt="Картиночка">
-            </section>
-        </li>
     </ul>
+    <section class="image">
+        <img src="{% static 'registration/img/Frame32.png' %}" class="img-1" alt="Картиночка">
+    </section>
 </main>
 {% endblock %}
