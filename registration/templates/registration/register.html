@@ -15,45 +15,44 @@
             <li>
                 <section class="register">
                     <div class="register-form-container">
-                        <h1> Регистрация </h1>
+                        <h1 class="title"> Регистрация </h1>
                         <form method="post">
                             {% csrf_token %}
                             <div class="form-fields">
-                                <div class="form-field">
+                                <div class="form-field email">
                                     <input type="text" placeholder="Email" class="field-email" name="email">
                                 </div>
-                                <div class="form-field">
-                                    <input type="text" placeholder="Name" class="field-name" name="first_name">
+                                <div class="form-field name">
+                                    <input type="text" placeholder="Имя" class="field-name" name="first_name">
                                 </div>
-                                <div class="form-field">
-                                    <input type="text" placeholder="Last name" class="field-name" name="last_name">
+                                <div class="form-field last-name">
+                                    <input type="text" placeholder="Фамилия" class="field-name" name="last_name">
                                 </div>
-                                <div class="form-field">
-                                    <input type="text" placeholder="Username" class="field-nickname" name="username">
+                                <div class="form-field username">
+                                    <input type="text" placeholder="Никнейм" class="field-nickname" name="username">
                                 </div>
-                                <div class="form-field">
-                                    <input type="text" placeholder="Password" class="field-password" name="password1">
+                                <div class="form-field password">
+                                    <input type="text" placeholder="Пароль" class="field-password" name="password1">
                                 </div>
-                                <div class="form-field">
-                                    <input type="text" placeholder="Сonfirm password" class="field-password" name="password2">
+                                <div class="form-field confirm-password">
+                                    <input type="text" placeholder="Подтвердить пароль" class="field-password" name="password2">
                                 </div>
                                 <div class="form-button">
                                     <button class="button"> Зарегестрироваться </button>
                                 </div>
+                                <div class="our">
+                                    <p>Наш пользователь?</p>
+                                    <a href="{% url 'login' %}" target="_self">Войти</a>
+                                </div>
                             </div>
                             {{ form.errors }}
                         </form>
-                        <div>
-                            <a href="{% url 'login' %}" target="_self"> Наш пользователь? </a>
-                        </div>
                     </div>
                 </section>
             </li>
-            <li>
-                <section class="image">
-                    <img src="{% static 'registration/img/Frame33.png' %}" width="100%" alt="Картиночка">
-                </section>
-            </li>
         </ul>
+        <section class="image">
+            <img src="{% static 'registration/img/Frame33.png' %}" class="img-1" alt="Картиночка">
+        </section>
     </main>
 {% endblock %}

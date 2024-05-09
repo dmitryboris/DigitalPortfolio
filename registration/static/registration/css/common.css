@@ -1,6 +1,6 @@
 body {
     display: flex;
-    /*justify-content: center;*/
+    justify-content: center;
     align-items: center;
 }
 
@@ -35,10 +35,11 @@ li{
 }
 
 input[type=text] {
-    width: 562px;
+    /*width: 562px;*/
     height: 42px;
     padding: 12px 0px;
-    margin: 8px 0;
+    margin-top: 8px;
+    margin-bottom: 8px;
     box-sizing: border-box;
     border: 2px solid grey;
     border-radius: 25px;
@@ -47,15 +48,28 @@ input[type=text] {
     background-repeat: no-repeat;
     padding-left: 40px;
 }
-
 .field-email {
     background: url('../img/email.png') no-repeat 5px 5px;
+    width: 562px;
+}
+.field-nickname {
+    background: url('../img/nick.png') no-repeat 5px 5px;
+    width: 562px;
+}
+
+.field-name {
+    background: url('../img/name.png') no-repeat 5px 5px;
+    width: 271px;
+    margin-right: 20px;
 }
 
 .field-password {
     background-image: url('../img/password.png');
+    width: 562px;
 }
 
 a {
     color: grey;
+    padding: 0;
+    margin: 0;
 }
