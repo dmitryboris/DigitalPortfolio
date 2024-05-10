@@ -1,12 +1,16 @@
 body {
     display: flex;
-    /*justify-content: center;*/
+    justify-content: center;
     align-items: center;
 }
 
 .registration-window {
     display: grid;
     grid-template-columns: 50% 50%;
+    position: absolute;
+    top:  50%;
+    left: 25%;
+    transform: translate(-50%,-50%);
 }
 
 li{
@@ -35,10 +39,11 @@ li{
 }
 
 input[type=text] {
-    width: 562px;
+    /*width: 562px;*/
     height: 42px;
     padding: 12px 0px;
-    margin: 8px 0;
+    margin-top: 8px;
+    margin-bottom: 8px;
     box-sizing: border-box;
     border: 2px solid grey;
     border-radius: 25px;
@@ -47,15 +52,84 @@ input[type=text] {
     background-repeat: no-repeat;
     padding-left: 40px;
 }
-
 .field-email {
     background: url('../img/email.png') no-repeat 5px 5px;
+    width: 562px;
+}
+.field-nickname {
+    background: url('../img/nick.png') no-repeat 5px 5px;
+    width: 562px;
+}
+
+.field-name {
+    background: url('../img/name.png') no-repeat 5px 5px;
+    width: 271px;
+    margin-right: 20px;
 }
 
 .field-password {
     background-image: url('../img/password.png');
+    width: 562px;
 }
 
 a {
     color: grey;
+    padding: 0;
+    margin: 0;
+}
+.img-1 {
+    width: 50%;
+    position: absolute;
+    right: 0px;
+    height: 100%
+}
+.title {
+    margin-bottom: 22px;
+}
+.form-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "username username"
+                         "password password"
+                         "enter-button forget"
+                         "enter-button first-time";
+
+}
+.username {
+    grid-area: username;
+}
+.password {
+    grid-area: password;
+}
+.enter-button {
+    margin-top: 20px;
+    grid-area: enter-button;
+}
+.forget {
+    padding: 0;
+    margin: 0;
+    justify-self: end;
+    position: absolute;
+    right: 0;
+    bottom: 25%;
+}
+.first-time {
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    bottom: -3%;
+    display: grid;
+}
+p {
+    padding: 0;
+    margin: 0;
+    color: grey;
+    justify-self: end;
+}
+a {
+    justify-self: end;
+}
+.forget-password {
+    text-decoration: none;
 }

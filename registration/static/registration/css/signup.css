@@ -1,11 +1,3 @@
-.field-nickname {
-    background: url('../img/nick.png') no-repeat 5px 5px;
-}
-
-.field-name {
-    background: url('../img/name.png') no-repeat 5px 5px;
-}
-
 .button {
     margin-top: 20px;
     display: inline-block;
@@ -26,4 +18,37 @@
 .button-forget {
     width: 240px;
     height: 50px;
+}
+.form-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "email email"
+                         "name last-name"
+                         "username username"
+                         "password password"
+                         "confirm-password confirm-password"
+                         "form-button our";
+}
+.email {
+    grid-area: email;
+}
+.name {
+    grid-area: name;
+}
+.last-name {
+    grid-area: last-name;
+}
+.confirm-password {
+    grid-area: confirm-password;
+}
+.form-button {
+    grid-area: form-button;
+    margin-top: 22px
+}
+.our {
+    grid-area: our;
+    justify-self: end;
+    align-self: end;
+    padding-right: 27px;
+    display: grid
 }
