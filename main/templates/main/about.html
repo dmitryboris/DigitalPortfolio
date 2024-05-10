@@ -6,7 +6,7 @@ dmitry
 {% endblock %}
 
 {% block extra_styles %}
-<link rel="stylesheet" href="{% static 'main/css/about.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/about.css' %}">
 {% endblock %}
 
 {% block body %}
@@ -16,14 +16,14 @@ dmitry
         <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Поиск</span>
         </div>
-        <input type="text" class="form-control" placeholder="" aria-label="Username"
-               aria-describedby="basic-addon1">
+        <input type="text" class="form-control" placeholder="Ник пользователя" aria-label="Username"
+               aria-describedby="basic-addon1" style="width:20rem;">
     </div>
     <div class="container mx-auto mt-4">
         <div class="row">
             {% for ach in achievements %}
             <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width:18rem;">
                     <a href="{{ ach.file }}"><img src="{{ ach.preview.url }}" class="card-img-top" alt="..."></a>
                     <div class="card-body">
                         <h5 class="card-title">{{ ach.title }}</h5>
@@ -37,4 +37,9 @@ dmitry
         </div>
     </div>
 </main>
+<footer class="bg-body-tertiary text-center text-lg-start">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+        © ДиджиталПортфолио
+    </div>
+</footer>
 {% endblock %}
