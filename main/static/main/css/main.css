@@ -1,0 +1,73 @@
+.image-1 {
+    width: 50%;
+    position: absolute;
+    right: 0px;
+    height: 100%
+}
+.content {
+    position: absolute;
+    top:  50%;
+    left: 25%;
+    transform: translate(-50%,-50%);
+    padding: 0px;
+    width: 563px;
+    height: 304px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "title title"
+                         "second-title second-title"
+                         "text text"
+                         "enter-button first-time";
+
+}
+.button {
+    margin-top: 20px;
+    display: inline-block;
+    width: 120px;
+    height: 50px;
+    text-align: center;
+    color: white;
+    background-color: #43AC71;
+    font: bold 20px/45px Manrope;
+    position: relative;
+    border-radius: 25px;
+    text-decoration: none;
+}
+
+.button:hover {
+    background: #6CC291;
+}
+.first-time {
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-area: first-time;
+    align-self: center;
+}
+.first-time-link {
+    padding: 0;
+    margin: 0;
+    text-decoration: underline;
+    color: grey;
+    justify-self: end;
+
+}
+.first-time-text {
+    padding: 0;
+    margin: 0;
+    color: grey;
+    justify-self: end;
+    align-self: end;
+}
+.title {
+    grid-area: title;
+}
+.second-title {
+    grid-area: second-title;
+}
+.enter-button {
+    grid-area: enter-button;
+}
+.text {
+    grid-area: text;
+}
