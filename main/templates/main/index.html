@@ -1,22 +1,35 @@
-{% extends "main/sample.html" %}
 {% load static %}
-
-{% block title %}
-    Digital Portfolio
-{% endblock %}
-
-{% block body %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    {% block extra_styles %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
     <main>
-        <h1> Digital Portfolio </h1>
-        <h2> Веб-сервис для организации, хранения и публикации проектов</h2>
-        <p> С помощью сервиса вы сможете хранить свои достижения в одном месте,
-            обмениваться ими и привлекать клиентов. </p>
-        <div class="buttons">
-            <a href="accounts/login" class="btn btn-primary"> Авторизация </a>
-            <a href="reg/register" class="btn btn-primary"> Регистрация </a>
-        </div>
+        <section class="content">
+            <h1 class="title"> Digital Portfolio </h1>
+            <h2 class="second-title"> Веб-сервис для организации, хранения и публикации проектов</h2>
+            <p class="text"> С помощью сервиса вы сможете хранить свои достижения в одном месте,
+                обмениваться ими и привлекать клиентов. </p>
+            <div class="enter-button">
+                <a href="accounts/login">
+                    <button class="button" type="button">Войти</button>
+                </a>
+            </div>
+            <div class="first-time">
+                <p class="first-time-text">Первый раз у нас?</p>
+                <a class="first-time-link" href="{% url 'register' %}" target="_self"> Зарегестрироваться </a>
+            </div>
+        </section>
         <section class="image">
-            <img src="{% static 'main/img/home.png' %}" width="1096" height="1080" alt="Картиночка">
+            <img src="{% static 'main/img/home.png' %}" class="image-1" alt="Картиночка">
         </section>
     </main>
-{% endblock %}
+</body>
+</html>
