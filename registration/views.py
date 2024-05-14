@@ -1,28 +1,31 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import FormView, DetailView
-from django.conf import settings
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm
 from django.contrib.auth.models import User
-
-@login_required
-def profile_view(request):
-    return render(request, 'registration/profile.html')
+from django.contrib.auth.views import LoginView
 
 
 class RegisterView(FormView):
     form_class = RegisterForm
     template_name = 'registration/register.html'
-    success_url = reverse_lazy('user-detail')
+
+    def get_success_url(self):
+        return reverse(
+            'user-detail',
+            kwargs={'username': self.request.user.username}
+        )
 
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
 
 
-class UserDetailView(DetailView):
-    model = User
-    template_name = 'registration/profile.html'
-    context_object_name = 'owner'
-    queryset = User.objects.all()
+class MyLoginView(LoginView):
+    def get_success_url(self):
+        url = self.get_redirect_url()
+        return url or reverse(
+            'user-detail',
+            kwargs={'username': self.request.user.username}
+        )
