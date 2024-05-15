@@ -21,5 +21,5 @@ class MyLoginView(LoginView):
         url = self.get_redirect_url()
         return url or reverse(
             'user-detail',
-            kwargs={'slug': self.request.user.username}
+            kwargs={'slug': self.request.user.username.lower()}
         )
