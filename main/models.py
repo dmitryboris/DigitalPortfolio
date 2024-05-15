@@ -34,3 +34,10 @@ class Profile(models.Model):
         if not self.slug:
             self.slug = slugify(self.user.username)
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.slug
+
+    class Meta:
+        verbose_name = 'Profile'
+        verbose_name_plural = 'Profiles'
