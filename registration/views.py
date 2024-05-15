@@ -1,9 +1,8 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
-from django.views.generic import FormView, DetailView
+from django.views.generic import FormView
 from .forms import RegisterForm
 from django.contrib.auth.views import LoginView
+from main.models import Profile
 
 
 class RegisterView(FormView):
@@ -12,7 +11,8 @@ class RegisterView(FormView):
     success_url = reverse_lazy('login')
 
     def form_valid(self, form):
-        form.save()
+        user = form.save()
+        Profile.objects.create(user=user)
         return super().form_valid(form)
 
 

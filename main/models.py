@@ -18,6 +18,8 @@ class Achievements(models.Model):
         null=True,
     )
 
+    objects = models.Manager()
+
     def __str__(self):
         return self.title
 
@@ -34,6 +36,8 @@ class Profile(models.Model):
         if not self.slug:
             self.slug = slugify(self.user.username)
         super().save(*args, **kwargs)
+
+    objects = models.Manager()
 
     def __str__(self):
         return self.slug
