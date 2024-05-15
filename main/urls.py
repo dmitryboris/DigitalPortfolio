@@ -2,12 +2,12 @@ from django.conf.urls.static import static
 from django.urls import path
 
 from dPortfolio import settings
-from . import views
-
+from .views import UserProfileDetailView, about, index
 
 urlpatterns = [
-    path('', views.index, name="home"),
-    path('dmitry/', views.about, name='dmitry')
+    path('', index, name="home"),
+    path('dmitry/', about, name='dmitry'),
+    path('<slug:slug>/', UserProfileDetailView.as_view(), name='user-detail')
 ]
 
 if settings.DEBUG:
