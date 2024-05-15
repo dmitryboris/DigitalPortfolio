@@ -1,7 +1,6 @@
-from django.contrib.auth.models import User
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import DetailView
-
+from .forms import AchievementForm
 from .models import Achievements, Profile
 
 
@@ -27,3 +26,23 @@ class UserProfileDetailView(DetailView):
         context['achievements'] = Achievements.objects.filter(author=profile.user)
         return context
 
+
+def create_achievement(request, slug):
+    error = ''
+    if request.method == 'POST':
+        form = AchievementForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('user-detail', kwargs={'slug': slug})
+        else:
+            error = 'Ошибка'
+
+    form = AchievementForm()
+
+    data = {
+        'form': form,
+        'slug': slug,
+        'error': error
+    }
+
+    return render(request, 'main/add.html', data)

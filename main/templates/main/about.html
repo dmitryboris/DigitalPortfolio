@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block title %}
- {{ owner.username }}
+{{ owner.username }}
 {% endblock %}
 
 {% block extra_styles %}
-    <link rel="stylesheet" href="{% static 'main/css/about.css' %}">
+<link rel="stylesheet" href="{% static 'main/css/about.css' %}">
 {% endblock %}
 
 {% block body %}
@@ -19,6 +19,42 @@
         <input type="text" class="form-control" placeholder="Ник пользователя" aria-label="Username"
                aria-describedby="basic-addon1" style="width:20rem;">
     </div>
+    {% if request.user == profile.user %}
+    <div>
+        <button class="button" type="button" onclick="window.dialog.showModal();">Редактировать профиль</button>
+        <dialog id="dialog">
+            <h2>{{ profile.user.first_name }} {{ profile.user.last_name }}</h2>
+            <form method="post" action="#">
+                {% csrf_token %}
+                <div class="form-fields">
+                    <div class="form-field username">
+                        <h3>Изменить имя</h3>
+                        <input type="text" placeholder="Новое имя" class="field-email" name="username">
+                    </div>
+                    <div class="form-field username">
+                        <h3>Изменить фамилию</h3>
+                        <input type="text" placeholder="Новая фамилия" class="field-email" name="username">
+                    </div>
+                    <div class="form-field username">
+                        <h3>Изменить email</h3>
+                        <input type="text" placeholder="Новый email" class="field-email" name="username">
+                    </div>
+                    <div class="form-field password">
+                        <h3>Изменить пароль</h3>
+                        <input type="text" placeholder="Новый пароль" class="field-password" name="password">
+                    </div>
+                    <button type="submit" onclick="window.dialog.close();" aria-label="close">Сохранить</button>
+                </div>
+            </form>
+        </dialog>
+    </div>
+
+    <div class="add-button">
+        <a href="{% url 'add-achievement' slug=profile.slug %}">
+            <button class="button" type="button">Добавить достижение</button>
+        </a>
+    </div>
+    {% endif %}
     <div class="container mx-auto mt-4">
         <div class="row">
             {% for ach in achievements %}
