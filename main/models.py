@@ -1,5 +1,7 @@
 from django.conf import settings
 from django.db import models
+from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 
 class Achievements(models.Model):
@@ -11,7 +13,7 @@ class Achievements(models.Model):
     views = models.IntegerField(default=0)
 
     author = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        User,
         on_delete=models.CASCADE,
         null=True,
     )
@@ -22,3 +24,13 @@ class Achievements(models.Model):
     class Meta:
         verbose_name = 'Achievement'
         verbose_name_plural = 'Achievements'
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    slug = models.SlugField(unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.user.username)
+        super().save(*args, **kwargs)

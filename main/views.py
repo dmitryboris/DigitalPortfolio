@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.views.generic import DetailView
 
-from .models import Achievements
+from .models import Achievements, Profile
 
 
 def index(request):
@@ -14,8 +14,12 @@ def about(request):
     return render(request, 'main/about.html', {'achievements': achievements})
 
 
-class UserDetailView(DetailView):
-    model = User
+class UserProfileDetailView(DetailView):
+    model = Profile
     template_name = 'main/about.html'
     context_object_name = 'owner'
-    queryset = User.objects.all()
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+    # queryset = User.objects.all()
+
+
