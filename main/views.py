@@ -20,7 +20,6 @@ class UserProfileDetailView(DetailView):
     context_object_name = 'profile'
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
-    # queryset = User.objects.all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
