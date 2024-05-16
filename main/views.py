@@ -30,12 +30,12 @@ class UserProfileDetailView(DetailView):
 def create_achievement(request, slug):
     error = ''
     if request.method == 'POST':
-        form = AchievementForm(request.POST)
+        form = AchievementForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('user-detail', kwargs={'slug': slug})
         else:
-            error = 'Ошибка'
+            error = 'Ошибка загрузки файлов'
 
     form = AchievementForm()
 
