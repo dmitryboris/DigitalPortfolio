@@ -1,4 +1,4 @@
-from .models import Achievements
+from .models import Achievements, Profile
 from django.forms import ModelForm, TextInput, FileInput
 from django.utils.translation import gettext_lazy as _
 
@@ -30,3 +30,16 @@ class AchievementForm(ModelForm):
         super(AchievementForm, self).__init__(*args, **kwargs)
         self.fields['file'].label = 'Загрузите достижение'
         self.fields['preview'].label = 'Загрузите обложку'
+
+
+class SearchProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['slug']
+
+        widgets = {
+            'slug': TextInput(attrs={
+                'class': 'field-title',
+                'placeholder': 'Ник пользователя'
+            })
+        }

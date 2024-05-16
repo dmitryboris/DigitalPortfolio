@@ -3,6 +3,7 @@ from django.views.generic import FormView
 from .forms import RegisterForm
 from django.contrib.auth.views import LoginView
 from main.models import Profile
+from django.utils.text import slugify
 
 
 class RegisterView(FormView):
@@ -21,5 +22,5 @@ class MyLoginView(LoginView):
         url = self.get_redirect_url()
         return url or reverse(
             'user-detail',
-            kwargs={'slug': self.request.user.username.lower()}
+            kwargs={'slug': slugify(self.request.user.username)}
         )
