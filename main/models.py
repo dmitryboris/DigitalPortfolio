@@ -1,3 +1,4 @@
+from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
@@ -5,8 +6,17 @@ from django.utils.text import slugify
 
 class Achievements(models.Model):
     title = models.CharField(max_length=50)
-    preview = models.ImageField(null=True)
-    file = models.FileField()
+    preview = models.ImageField(
+        null=True,
+        validators=[
+            FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png']),
+        ]
+    )
+    file = models.FileField(
+        validators=[
+            FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'pdf']),
+        ]
+    )
     pub_date = models.DateTimeField(auto_now_add=True)
     likes = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
