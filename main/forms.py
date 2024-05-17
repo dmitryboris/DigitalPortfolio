@@ -1,3 +1,5 @@
+from django.contrib.auth.models import User
+
 from .models import Achievements, Profile
 from django.forms import ModelForm, TextInput, FileInput
 from django.utils.translation import gettext_lazy as _
@@ -6,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 class AchievementForm(ModelForm):
     class Meta:
         model = Achievements
-        fields = ['title', 'preview', 'file', 'author']
+        fields = ['title', 'preview', 'file']
 
         widgets = {
             'title': TextInput(attrs={
@@ -21,15 +23,21 @@ class AchievementForm(ModelForm):
             })
         }
 
-        labels = {
-            'file': _('Загрузите достижение'),
-            'preview': _('Загрузите обложку')
-        }
+        # labels = {
+        #    'file': _('Загрузите достижение'),
+        #    'preview': _('Загрузите обложку')
+        # }
 
     def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('author', None)
         super(AchievementForm, self).__init__(*args, **kwargs)
-        self.fields['file'].label = 'Загрузите достижение'
-        self.fields['preview'].label = 'Загрузите обложку'
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        instance.author = User.objects.get(id=self.user.id)
+        if commit:
+            instance.save()
+        return instance
 
 
 class SearchProfileForm(ModelForm):
