@@ -1,5 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.utils.text import slugify
 from django.views.generic import DetailView
 from .forms import AchievementForm
 from .models import Achievements, Profile
@@ -10,11 +12,11 @@ from functools import wraps
 def user_is_owner(view_func):
     @wraps(view_func)
     def _wrapped_view(request, *args, **kwargs):
-        username = kwargs.get('username')
-        if request.user.is_authenticated and request.user.username == username:
+        username = kwargs.get('slug')
+        print(f"URL username: {username}, Logged in username: {request.user.username}")
+        if request.user.is_authenticated and slugify(request.user.username) == username:
             return view_func(request, *args, **kwargs)
         return HttpResponseForbidden("You are not allowed to access this page.")
-
     return _wrapped_view
 
 
@@ -42,14 +44,14 @@ class UserProfileDetailView(DetailView):
 
 
 @login_required
-# @user_is_owner
+@user_is_owner
 def create_achievement(request, slug):
     error = ''
     if request.method == 'POST':
         form = AchievementForm(request.POST, request.FILES, author=request.user)
         if form.is_valid():
             form.save()
-            return redirect('user-detail', kwargs={'slug': slug})
+            return redirect(reverse('user-detail', kwargs={'slug': slug}))
         else:
             error = 'Ошибка загрузки файлов'
 
