@@ -48,7 +48,7 @@
 
         <div class="add-button">
             <a href="{% url 'add-achievement' slug=profile.slug %}">
-                <button class="button" type="button">Добавить достижение</button>
+                <img src="{% static 'main/img/Upload.png' %}">
             </a>
         </div>
         {% endif %}
@@ -63,8 +63,8 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ ach.title }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ ach.pub_date }}</h6>
-                            <p> Просмотры - {{ ach.views }} </p>
-                            <p> Лайки - {{ ach.likes }} </p>
+                            <p> <img src="{% static 'main/img/Eye.png' %}">  {{ ach.views }} </p>
+                            <p> <img src="{% static 'main/img/Like.png' %}">  {{ ach.likes }} </p>
                         </div>
                     </div>
                 </div>
