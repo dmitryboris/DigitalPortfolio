@@ -58,13 +58,13 @@
             <div class="row">
                 {% for ach in achievements %}
                 <div class="col-md-4">
-                    <div class="card" style="width:18rem;">
+                    <div class="card">
                         <a href="{{ ach.file.url }}"><img src="{{ ach.preview.url }}" class="card-img-top" alt="..."></a>
                         <div class="card-body">
                             <h5 class="card-title">{{ ach.title }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{ ach.pub_date }}</h6>
-                            <p> <img src="{% static 'main/img/Eye.png' %}">  {{ ach.views }} </p>
-                            <p> <img src="{% static 'main/img/Like.png' %}">  {{ ach.likes }} </p>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ ach.pub_date|date:"d-m-Y" }}</h6>
+                            <p> <img src="{% static 'main/img/Eye.png' %}">  {{ ach.formatted_views }} </p>
+                            <p> <img src="{% static 'main/img/Like.png' %}">  {{ ach.formatted_likes }} </p>
                         </div>
                     </div>
                 </div>

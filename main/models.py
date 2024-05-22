@@ -29,6 +29,12 @@ class Achievements(models.Model):
 
     objects = models.Manager()
 
+    def formatted_likes(self):
+        return format_number_with_suffix(self.likes)
+
+    def formatted_views(self):
+        return format_number_with_suffix(self.views)
+
     def __str__(self):
         return self.title
 
@@ -54,3 +60,9 @@ class Profile(models.Model):
     class Meta:
         verbose_name = 'Profile'
         verbose_name_plural = 'Profiles'
+
+def format_number_with_suffix(value):
+    if value >= 1000:
+        return f"{value // 1000}k"
+    else:
+        return str(value)
