@@ -54,10 +54,9 @@
         {% endif %}
     </header>
     <main>
-        <div class="container mx-auto mt-4">
+        <div class="cont">
             <div class="row">
                 {% for ach in achievements %}
-                <div class="col-md-4">
                     <div class="card">
                         <a href="{{ ach.file.url }}"><img src="{{ ach.preview.url }}" class="card-img-top" alt="..."></a>
                         <div class="card-body">
@@ -71,7 +70,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
                 {% endfor %}
             </div>
         </div>
