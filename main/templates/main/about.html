@@ -62,9 +62,13 @@
                         <a href="{{ ach.file.url }}"><img src="{{ ach.preview.url }}" class="card-img-top" alt="..."></a>
                         <div class="card-body">
                             <h5 class="card-title">{{ ach.title }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{ ach.pub_date|date:"d-m-Y" }}</h6>
-                            <p> <img src="{% static 'main/img/Eye.png' %}">  {{ ach.formatted_views }} </p>
-                            <p> <img src="{% static 'main/img/Like.png' %}">  {{ ach.formatted_likes }} </p>
+                            <div class="right-corner">
+                                <h6 class="card-subtitle mb-2 text-muted">{{ ach.pub_date|date:"d-m-Y" }}</h6>
+                                <div class="statistic">
+                                    <p class="likes"> <img src="{% static 'main/img/Like.png' %}" width="19" height="19"> {{ ach.formatted_likes }} </p>
+                                    <p class="views"> <img src="{% static 'main/img/Eye.png' %}" width="20" height="20"> {{ ach.formatted_views }} </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

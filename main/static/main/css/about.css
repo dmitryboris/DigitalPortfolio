@@ -2,12 +2,12 @@
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   border-radius: 10px; /* 5px rounded corners */
+  height: 310px;
+}
+img {
+    display: block;
+}
 
-  height: 400px;
-}
-.col-md-4 {
-  width: 417px;
-}
 /* Add rounded corners to the top left and the top right corner of the image */
 card-img-top {
   border-radius: 10px 10px 0 0;
@@ -15,10 +15,11 @@ card-img-top {
   height: 240px;
   background: #000000;
   border-radius: 12px;
+  display: block;
 }
 /* Add some padding inside the card container */
 .container {
-  padding: 2px 16px;
+
 }
 
 input[type=text] {
@@ -67,11 +68,57 @@ html,
 body {
     height: 100%;
     display: flex;
-    flex-direction: column
+    flex-direction: column;
 }
 main {
     flex: 1;
 }
 .add-button {
     margin-top: 100px;
+    margin-bottom: 100px;
 }
+.card-body {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    padding-top: 12px;
+    padding-left: 2px;
+    padding-right: 2px;
+    justify-content: space-between;
+}
+
+.statistic {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+
+}
+.card-title {
+    margin: 0;
+    padding: 0;
+}
+h6 {
+    margin: 0;
+    padding: 0;
+    padding-top: 9px;
+    font-size: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+.right-corner {
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+}
+.likes {
+    display: flex;
+    align-self: center;
+    justify-content: start;
+}
+.views {
+    display: flex;
+    align-self: center;
+}
+
