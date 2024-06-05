@@ -18,7 +18,7 @@
     </div>
     <div class="profile-section">
         {% if request.user == profile.user %}
-            <a class="edit-profile" href="#"><img src="{% static 'main/img/Upload.png' %}"></a>
+        <a class="upload" href="{% url 'add-achievement' slug=profile.slug %}"><img src="{% static 'main/img/Upload.png' %}"></a>
         {% endif %}
         <div class="profile-icon">
             <img src="{% static 'images/profile.png' %}" alt="Profile Icon">
@@ -30,27 +30,32 @@
     {% if profile.is_private == False %}
     <div class="cards-container">
         {% for ach in achievements %}
-            <div class="card">
-                <a href="{{ ach.file.url }}"><img class="ach-image" src="{{ ach.preview.url }}" alt="..."></a>
-                <div class="details">
-                    <div>
-                        <h2>{{ ach.title }}</h2>
-                        <p>{{ profile.user.first_name }} {{ profile.user.last_name }}</p>
-                    </div>
-                    <div>
-                        <p>{{ ach.pub_date|date:"d-m-Y" }}</p>
-                        <div class="statistic">
-                            <p class="likes"> <img src="{% static 'main/img/Like.png' %}" width="19" height="19"> {{ ach.formatted_likes }} </p>
-                            <p class="views"> <img src="{% static 'main/img/Eye.png' %}" width="20" height="20"> {{ ach.formatted_views }} </p>
-                        </div>
+        <div class="card">
+            <a href="{{ ach.file.url }}"><img class="ach-image" src="{{ ach.preview.url }}" alt="..."></a>
+            <div class="details">
+                <div>
+                    <h2>{{ ach.title }}</h2>
+                    <p>{{ profile.user.first_name }} {{ profile.user.last_name }}</p>
+                </div>
+                <div>
+                    <p>{{ ach.pub_date|date:"d-m-Y" }}</p>
+                    <div class="statistic">
+                        <p class="likes">
+                            <img src="{% static 'main/img/Like.png' %}" width="19" height="19">
+                            {{ ach.formatted_likes }} </p>
+                        <p class="views">
+                            <img src="{% static 'main/img/Eye.png' %}" width="20" height="20">
+                            {{ ach.formatted_views }}
+                        </p>
                     </div>
                 </div>
             </div>
+        </div>
         {% endfor %}
         <!-- Repeat the card div for more items -->
     </div>
     {% else %}
-        <div> Это закрытый профиль </div>
+    <div> Это закрытый профиль</div>
     {% endif %}
 </main>
 <footer>
