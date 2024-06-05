@@ -20,6 +20,10 @@ header {
     font-size: 24px;
 }
 
+.logo p {
+    margin: 0;
+}
+
 .search-bar input {
     padding: 5px;
     border-radius: 20px;
@@ -125,6 +129,7 @@ input[type=text] {
 }
 
 .likes {
+    gap: 5px;
     display: flex;
     align-self: center;
     justify-content: start;
@@ -133,5 +138,6 @@ input[type=text] {
 .views {
     display: flex;
     align-self: center;
+    gap: 5px;
 }
 
