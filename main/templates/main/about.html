@@ -25,7 +25,7 @@
     <div class="cards-container">
         {% for ach in achievements %}
             <div class="card">
-                <a href="{{ ach.file }}"><img class="ach-image" src="{{ ach.preview.url }}" alt="..."></a>
+                <a href="{{ ach.file.url }}"><img class="ach-image" src="{{ ach.preview.url }}" alt="..."></a>
                 <div class="details">
                     <h2>{{ ach.title }}</h2>
                     <p>{{ ach.pub_date }}</p>
