@@ -80,6 +80,8 @@ h1 {
 }
 
 .details {
+    display: flex;
+    justify-content: space-between;
     padding: 10px;
 }
 
