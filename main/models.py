@@ -46,6 +46,13 @@ class Achievements(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     slug = models.SlugField(unique=True, blank=True)
+    is_private = models.BooleanField(default=False)
+    avatar = models.ImageField(
+        null=True,
+        validators=[
+            FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png']),
+        ]
+    )
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -60,6 +67,7 @@ class Profile(models.Model):
     class Meta:
         verbose_name = 'Profile'
         verbose_name_plural = 'Profiles'
+
 
 def format_number_with_suffix(value):
     if value >= 1000:
