@@ -1,82 +1,46 @@
-{% extends "main/sample.html" %}
 {% load static %}
-
-{% block title %}
-{{ owner.username }}
-{% endblock %}
-
-{% block extra_styles %}
-<link rel="stylesheet" href="{% static 'main/css/about.css' %}">
-{% endblock %}
-
-{% block body %}
-    <header>
-        <h1> Страница {{ profile.user.username }} </h1>
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Ник пользователя" aria-label="Username"
-                   aria-describedby="basic-addon1" style="width:20rem;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ profile.user.username }}</title>
+    <link rel="stylesheet" href="{% static 'main/css/about.css' %}">
+</head>
+<body>
+<header>
+    <div class="logo">Шахром Портфолио</div>
+    <div class="search-bar">
+        <input type="text" placeholder="Поиск">
+    </div>
+    <div class="profile-section">
+        <button class="edit-profile">Редактировать профиль</button>
+        <div class="profile-icon">
+            <img src="{% static 'images/profile.png' %}" alt="Profile Icon">
         </div>
-        {% if request.user == profile.user %}
-        <div>
-            <button class="button" type="button" onclick="window.dialog.showModal();">Редактировать профиль</button>
-            <dialog id="dialog">
-                <h2>{{ profile.user.first_name }} {{ profile.user.last_name }}</h2>
-                <form method="post" action="#">
-                    {% csrf_token %}
-                    <div class="form-fields">
-                        <div class="form-field username">
-                            <h3>Изменить имя</h3>
-                            <input type="text" placeholder="Новое имя" class="field-email" name="username">
-                        </div>
-                        <div class="form-field username">
-                            <h3>Изменить фамилию</h3>
-                            <input type="text" placeholder="Новая фамилия" class="field-email" name="username">
-                        </div>
-                        <div class="form-field username">
-                            <h3>Изменить email</h3>
-                            <input type="text" placeholder="Новый email" class="field-email" name="username">
-                        </div>
-                        <div class="form-field password">
-                            <h3>Изменить пароль</h3>
-                            <input type="text" placeholder="Новый пароль" class="field-password" name="password">
-                        </div>
-                        <button type="submit" onclick="window.dialog.close();" aria-label="close">Сохранить</button>
+    </div>
+</header>
+<main>
+    <h1>Страница {{ profile.user.username }}</h1>
+    <div class="cards-container">
+        {% for ach in achievements %}
+            <div class="card">
+                <a href="{{ ach.file }}"><img class="ach-image" src="{{ ach.preview.url }}" alt="..."></a>
+                <div class="details">
+                    <h2>{{ ach.title }}</h2>
+                    <p>{{ ach.pub_date }}</p>
+                    <div class="statistic">
+                        <p class="likes"> <img src="{% static 'main/img/Like.png' %}" width="19" height="19"> {{ ach.formatted_likes }} </p>
+                        <p class="views"> <img src="{% static 'main/img/Eye.png' %}" width="20" height="20"> {{ ach.formatted_views }} </p>
                     </div>
-                </form>
-            </dialog>
-        </div>
-
-        <div class="add-button">
-            <a href="{% url 'add-achievement' slug=profile.slug %}">
-                <img src="{% static 'main/img/Upload.png' %}">
-            </a>
-        </div>
-        {% endif %}
-    </header>
-    <main>
-        <div class="cont">
-            <div class="row">
-                {% for ach in achievements %}
-                    <div class="card">
-                        <a href="{{ ach.file.url }}"><img src="{{ ach.preview.url }}" class="card-img-top" alt="..."></a>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ ach.title }}</h5>
-                            <div class="right-corner">
-                                <h6 class="card-subtitle mb-2 text-muted">{{ ach.pub_date|date:"d-m-Y" }}</h6>
-                                <div class="statistic">
-                                    <p class="likes"> <img src="{% static 'main/img/Like.png' %}" width="19" height="19"> {{ ach.formatted_likes }} </p>
-                                    <p class="views"> <img src="{% static 'main/img/Eye.png' %}" width="20" height="20"> {{ ach.formatted_views }} </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
+                </div>
             </div>
-        </div>
-    </main>
-    <footer class="bg-body-tertiary text-center text-lg-start">
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
-            © ДиджиталПортфолио
-        </div>
-    </footer>
-{% endblock %}
+        {% endfor %}
+        <!-- Repeat the card div for more items -->
+    </div>
+</main>
+<footer>
+    <p>© ШахромПортфолио, 2024</p>
+</footer>
+</body>
+</html>
