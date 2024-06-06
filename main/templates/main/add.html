@@ -14,8 +14,8 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="header-content">
-            <a href="#">
-                <button class="cancel-button">Отменить</button>
+            <a href="{% url 'user-detail' slug=slug %}">
+                <button class="cancel-button" type="button">Отменить</button>
             </a>
             <button class="publish-button" type="submit">Опубликовать</button>
         </div>
