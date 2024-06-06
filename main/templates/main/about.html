@@ -14,7 +14,9 @@
         <p>Портфолио</p>
     </div>
     <div class="search-bar">
-        <input type="text" placeholder="Поиск">
+        <form method="get">
+            <input type="text" name="q" placeholder="Поиск">
+        </form>
     </div>
     <div class="profile-section">
         {% if request.user == profile.user %}
@@ -52,7 +54,6 @@
             </div>
         </div>
         {% endfor %}
-        <!-- Repeat the card div for more items -->
     </div>
     {% else %}
     <div> Это закрытый профиль</div>

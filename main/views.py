@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils.text import slugify
@@ -17,6 +18,7 @@ def user_is_owner(view_func):
         if request.user.is_authenticated and slugify(request.user.username) == username:
             return view_func(request, *args, **kwargs)
         return HttpResponseForbidden("You are not allowed to access this page.")
+
     return _wrapped_view
 
 
@@ -35,6 +37,16 @@ class UserProfileDetailView(DetailView):
     context_object_name = 'profile'
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
+
+    def get(self, request, *args, **kwargs):
+        query = request.GET.get('q')
+        if query:
+            try:
+                user = User.objects.get(username=query)
+                return redirect(reverse('user-detail', kwargs={'slug': slugify(user.username)}))
+            except Exception:
+                pass
+        return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
