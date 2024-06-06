@@ -5,6 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ profile.user.username }}</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const searchInput = document.querySelector('.search-bar input[name="q"]');
+            if (searchInput) {
+                searchInput.value = '';
+            }
+        });
+    </script>
     <link rel="stylesheet" href="{% static 'main/css/about.css' %}">
 </head>
 <body>
