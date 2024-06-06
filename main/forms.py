@@ -12,7 +12,7 @@ class AchievementForm(ModelForm):
 
         widgets = {
             'title': TextInput(attrs={
-                'class': 'field-title',
+                'class': 'project-title',
                 'placeholder': 'Над чем вы работали?'
             }),
             'preview': FileInput(attrs={

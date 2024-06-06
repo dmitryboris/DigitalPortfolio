@@ -1,27 +1,51 @@
-{% extends "main/sample.html" %}
 {% load static %}
-
-{% block title %}
-    Add
-{% endblock %}
-
-{% block extra_styles %}
-{% endblock %}
-
-{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add</title>
+    <link rel="stylesheet" href="{% static 'main/css/add.css' %}">
+</head>
+<body>
+<header>
+</header>
 <main>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.title }} <br>
-        {{ form.preview }} <br>
-        {{ form.file }} <br>
-        <span>{{ error }}</span>
-        <button class="button" type="submit"> Опубликовать </button>
+        <div class="header-content">
+            <a href="#">
+                <button class="cancel-button">Отменить</button>
+            </a>
+            <button class="publish-button" type="submit">Опубликовать</button>
+        </div>
+        <div class="main-content">
+            <div class="left-section">
+                {{ form.title }}
+                <div class="image-upload">
+                    <div class="upload-container">
+                        <p>Перетащите изображение или <span class="upload-link">{{ form.file }}</span></p>
+                        <p class="upload-recommendation">Рекомендованная ширина изображения — 1600px. Максимальный размер одного файла 10MB</p>
+                    </div>
+                </div>
+            </div>
+            <div class="right-section">
+                <div class="cover-upload">
+                    <p>Загрузить обложку</p>
+                    <br>
+                    {{ form.preview }}
+                </div>
+                <div class="description">
+                    <textarea placeholder="Добавьте описание"></textarea>
+                </div>
+            </div>
+        </div>
     </form>
 </main>
-<footer class="bg-body-tertiary text-center text-lg-start">
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
-        © ДиджиталПортфолио
+<footer>
+    <div class="footer-content">
+        <p>© ШахромПортфолио, 2024</p>
     </div>
 </footer>
-{% endblock %}
+</body>
+</html>
