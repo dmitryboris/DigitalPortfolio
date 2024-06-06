@@ -1,5 +1,5 @@
 body {
-    height: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     font-family: Arial, sans-serif;
@@ -29,6 +29,22 @@ header {
     border-radius: 20px;
     border: 1px solid #ccc;
     width: 300px;
+}
+.search-bar {
+    position: relative;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+}
+
+.input-group img {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Отключает клик по изображению, чтобы не сбрасывать фокус с поля ввода */
 }
 
 .upload {
@@ -104,6 +120,7 @@ footer {
     text-align: center;
     padding: 10px;
     background-color: #F8F8F8;
+    margin-top: auto;
 }
 
 input[type=text] {
