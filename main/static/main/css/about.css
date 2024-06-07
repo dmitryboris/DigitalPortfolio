@@ -75,15 +75,16 @@ main {
 
 h1 {
     font-size: 24px;
-    margin-bottom: 20px;
+    margin-bottom: 32px;
+    margin-left: 40px;
 }
 
 .cards-container {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
-    gap: 30px;
-    margin: 0;
+    gap: 42px 25px;
+    width: 1780px;
+    margin: 0 auto;
 }
 
 .card {
