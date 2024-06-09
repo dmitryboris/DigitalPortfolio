@@ -160,3 +160,20 @@ input[type=text] {
     gap: 5px;
 }
 
+.closed {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .img {
+        width: 400px;
+        height: 400px;
+    }
+
+    p {
+        text-align: center;
+        margin: 0;
+        font-size: 28px;
+    }
+}

@@ -67,7 +67,10 @@
         {% endfor %}
     </div>
     {% else %}
-    <div> Это закрытый профиль</div>
+    <div class="closed">
+        <img src="{% static 'main/img/Lock.png' %}" width="400" height="400">
+        <p> Это закрытый профиль</p>
+    </div>
     {% endif %}
 </main>
 <footer>
