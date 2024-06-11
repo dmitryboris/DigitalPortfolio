@@ -9,10 +9,12 @@ body {
 }
 
 header {
+    width: 1780px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
+    margin: 0 auto;
     margin-bottom: 20px;
 }
 
