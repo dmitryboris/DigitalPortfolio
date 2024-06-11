@@ -21,6 +21,7 @@ class Achievements(models.Model):
     likes = models.IntegerField(default=0)
     liked_users = models.ManyToManyField(User, related_name='liked_achievements', blank=True)
     views = models.IntegerField(default=0)
+    views_users = models.ManyToManyField(User, related_name='views_achievements', blank=True)
 
     author = models.ForeignKey(
         User,

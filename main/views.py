@@ -80,7 +80,9 @@ def create_achievement(request, slug):
 
 def increment_views(request, pk):
     achievement = get_object_or_404(Achievements, pk=pk)
-    achievement.views += 1
+    if request.user not in achievement.views_users.all():
+        achievement.views += 1
+        achievement.views_users.add(request.user)
     achievement.save()
     return redirect(achievement.file.url)
 
