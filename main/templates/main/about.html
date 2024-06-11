@@ -44,7 +44,9 @@
     <div class="cards-container">
         {% for ach in achievements %}
         <div class="card">
-            <a href="{{ ach.file.url }}"><img class="ach-image" src="{{ ach.preview.url }}" alt="..."></a>
+            <a href="{% url 'increment-views' ach.id %}">
+                <img class="ach-image" src="{{ ach.preview.url }}" alt="...">
+            </a>
             <div class="details">
                 <div>
                     <h2>{{ ach.title }}</h2>
@@ -54,8 +56,11 @@
                     <p>{{ ach.pub_date|date:"d-m-Y" }}</p>
                     <div class="statistic">
                         <p class="likes">
-                            <img src="{% static 'main/img/Like.png' %}" width="19" height="19">
-                            {{ ach.formatted_likes }} </p>
+                            <a href="{% url 'increment-likes' ach.id %}">
+                                <img src="{% static 'main/img/Like.png' %}" width="19" height="19">
+                            </a>
+                            {{ ach.formatted_likes }}
+                        </p>
                         <p class="views">
                             <img src="{% static 'main/img/Eye.png' %}" width="20" height="20">
                             {{ ach.formatted_views }}

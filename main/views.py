@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.utils.text import slugify
 from django.views.generic import DetailView
@@ -76,3 +76,17 @@ def create_achievement(request, slug):
     }
 
     return render(request, 'main/add.html', data)
+
+
+def increment_views(request, pk):
+    achievement = get_object_or_404(Achievements, pk=pk)
+    achievement.views += 1
+    achievement.save()
+    return redirect(achievement.file.url)
+
+
+def increment_likes(request, pk):
+    achievement = get_object_or_404(Achievements, pk=pk)
+    achievement.likes += 1
+    achievement.save()
+    return redirect(reverse('user-detail', kwargs={'slug': slugify(request.user.username)}))
