@@ -21,6 +21,8 @@ class Achievements(models.Model):
     likes = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
 
+    liked_by = models.ManyToManyField(User, related_name='liked_achievements', blank=True)
+
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,

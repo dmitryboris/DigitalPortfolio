@@ -2,7 +2,7 @@ from django.conf.urls.static import static
 from django.urls import path
 
 from dPortfolio import settings
-from .views import UserProfileDetailView, about, index, create_achievement, increment_views, increment_likes
+from .views import UserProfileDetailView, about, index, create_achievement, increment_views, toggle_like
 
 urlpatterns = [
     path('', index, name="home"),
@@ -10,7 +10,7 @@ urlpatterns = [
     path('<slug:slug>/', UserProfileDetailView.as_view(), name='user-detail'),
     path('<slug:slug>/add/', create_achievement, name='add-achievement'),
     path('increment-views/<int:pk>/', increment_views, name='increment-views'),
-    path('increment-likes/<int:pk>/', increment_likes, name='increment-likes'),
+    path('toggle-like/<int:pk>/', toggle_like, name='toggle-like'),
 ]
 
 if settings.DEBUG:

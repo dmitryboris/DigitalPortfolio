@@ -11,6 +11,30 @@
             if (searchInput) {
                 searchInput.value = '';
             }
+            const likeButtons = document.querySelectorAll('.likes img');
+            likeButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const card = event.target.closest('.card');
+                    const achievementId = card.dataset.achievementId;
+
+                    fetch(`/toggle-like/${achievementId}/`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}',
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        const likesCount = card.querySelector('.likes-count');
+                        likesCount.textContent = data.likes;
+                        if (data.liked) {
+                            event.target.src = '{% static "main/img/RedLike.svg" %}';
+                        } else {
+                            event.target.src = '{% static "main/img/Like.svg" %}';
+                        }
+                    });
+                });
+            });
         });
     </script>
     <link rel="stylesheet" href="{% static 'main/css/about.css' %}">
@@ -31,7 +55,8 @@
     </div>
     <div class="profile-section">
         {% if request.user == profile.user %}
-        <a class="upload" href="{% url 'add-achievement' slug=profile.slug %}"><img src="{% static 'main/img/Upload.png' %}"></a>
+        <a class="upload" href="{% url 'add-achievement' slug=profile.slug %}"><img
+                src="{% static 'main/img/Upload.png' %}"></a>
         {% endif %}
         <div class="profile-icon">
             <img src="{% static 'main/img/user.svg' %}" alt="Profile Icon">
@@ -43,7 +68,7 @@
     {% if profile.is_private == False %}
     <div class="cards-container">
         {% for ach in achievements %}
-        <div class="card">
+        <div class="card" data-achievement-id="{{ ach.id }}">
             <a href="{% url 'increment-views' ach.id %}">
                 <img class="ach-image" src="{{ ach.preview.url }}" alt="...">
             </a>
@@ -56,13 +81,11 @@
                     <p>{{ ach.pub_date|date:"d-m-Y" }}</p>
                     <div class="statistic">
                         <p class="likes">
-                            <a href="{% url 'increment-likes' ach.id %}">
-                                <img src="{% static 'main/img/Like.png' %}" width="19" height="19">
-                            </a>
-                            {{ ach.formatted_likes }}
+                            <img src="{% static 'main/img/Like.svg' %}" width="19" height="19">
+                            <span class="likes-count">{{ ach.formatted_likes }}</span>
                         </p>
                         <p class="views">
-                            <img src="{% static 'main/img/Eye.png' %}" width="20" height="20">
+                            <img src="{% static 'main/img/Eye.svg' %}" width="20" height="20">
                             {{ ach.formatted_views }}
                         </p>
                     </div>
