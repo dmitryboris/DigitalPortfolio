@@ -14,7 +14,7 @@ class Achievements(models.Model):
     )
     file = models.FileField(
         validators=[
-            FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'pdf']),
+            FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'pdf', 'ogg', 'mp3']),
         ]
     )
     pub_date = models.DateTimeField(auto_now_add=True)
