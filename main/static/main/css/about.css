@@ -41,6 +41,12 @@ header {
     align-items: center;
 }
 
+main h1 {
+    width: 1780px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
 .input-group img {
     position: absolute;
     left: 10px;
