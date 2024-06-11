@@ -19,6 +19,7 @@ class Achievements(models.Model):
     )
     pub_date = models.DateTimeField(auto_now_add=True)
     likes = models.IntegerField(default=0)
+    liked_users = models.ManyToManyField(User, related_name='liked_achievements', blank=True)
     views = models.IntegerField(default=0)
 
     author = models.ForeignKey(

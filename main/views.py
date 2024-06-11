@@ -87,6 +87,11 @@ def increment_views(request, pk):
 
 def increment_likes(request, pk):
     achievement = get_object_or_404(Achievements, pk=pk)
-    achievement.likes += 1
+    if request.user in achievement.liked_users.all():
+        achievement.likes -= 1
+        achievement.liked_users.remove(request.user)
+    else:
+        achievement.likes += 1
+        achievement.liked_users.add(request.user)
     achievement.save()
     return redirect(reverse('user-detail', kwargs={'slug': slugify(request.user.username)}))
