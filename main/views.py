@@ -1,11 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.utils.text import slugify
 from django.views.decorators.http import require_POST
 from django.views.generic import DetailView
-from .forms import AchievementForm
+from .forms import AchievementForm, ProfileForm
 from .models import Achievements, Profile
 from django.http import HttpResponseForbidden, JsonResponse
 from functools import wraps
@@ -99,3 +99,17 @@ def toggle_like(request, pk):
         liked = True
     achievement.save()
     return JsonResponse({'likes': achievement.likes, 'liked': liked})
+
+
+def update_profile(request, slug):
+    profile = get_object_or_404(Profile, slug=slug)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('user-detail', kwargs={'slug': profile.slug}))
+    else:
+        form = ProfileForm(instance=profile)
+
+    return render(request, 'about.html', {'form': form, 'profile': profile})

@@ -51,3 +51,9 @@ class SearchProfileForm(ModelForm):
                 'placeholder': 'Ник пользователя'
             })
         }
+
+
+class ProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['avatar', 'is_private']
