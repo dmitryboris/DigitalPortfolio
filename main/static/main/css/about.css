@@ -70,6 +70,7 @@ main h1 {
 .profile-section {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 .profile-icon img {

@@ -72,7 +72,7 @@
     <div class="profile-section">
         {% if request.user == profile.user %}
         <a class="upload" href="{% url 'add-achievement' slug=profile.slug %}"><img
-                src="{% static 'main/img/Upload.png' %}"></a>
+                src="{% static 'main/img/Upload.svg' %}"></a>
         <div class="profile-icon">
             <img src="{% if profile.avatar %}{{ profile.avatar.url }}{% else %}{% static 'main/img/user.svg' %}{% endif %}"
                  alt="Profile Icon" id="profileIcon">
