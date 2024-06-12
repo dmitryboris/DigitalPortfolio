@@ -57,15 +57,15 @@
 </head>
 <body>
 <header>
-    <div class="logo">
+    <a href="{% url 'redirect-home' pk=request.user.id %}" class="logo">
         <p>Digital</p>
         <p>Portfolio</p>
-    </div>
+    </a>
     <div class="search-bar">
         <form method="get">
             <div class="input-group">
                 <img src="{% static 'main/img/Search.svg' %}" width="22" height="22" alt="Поиск">
-                <input type="text" name="q" placeholder="Поиск">
+                <input type="text" name="q" placeholder="Поиск пользователей">
             </div>
         </form>
     </div>

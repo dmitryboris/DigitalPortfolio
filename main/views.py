@@ -115,3 +115,9 @@ def update_profile(request, slug):
         form = ProfileForm(instance=profile)
 
     return redirect(reverse('user-detail', kwargs={'slug': slug}))
+
+
+@login_required
+def redirect_home(request, pk):
+    user = User.objects.get(pk=pk)
+    return redirect(reverse('user-detail', kwargs={'slug': slugify(user.username)}))
