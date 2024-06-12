@@ -101,6 +101,8 @@ def toggle_like(request, pk):
     return JsonResponse({'likes': achievement.likes, 'liked': liked})
 
 
+@login_required
+@user_is_owner
 def update_profile(request, slug):
     profile = get_object_or_404(Profile, slug=slug)
 
@@ -108,8 +110,8 @@ def update_profile(request, slug):
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
-            return redirect(reverse('user-detail', kwargs={'slug': profile.slug}))
+            return redirect(reverse('user-detail', kwargs={'slug': slug}))
     else:
         form = ProfileForm(instance=profile)
 
-    return render(request, 'about.html', {'form': form, 'profile': profile})
+    return redirect(reverse('user-detail', kwargs={'slug': slug}))
