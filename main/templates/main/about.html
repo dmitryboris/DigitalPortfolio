@@ -87,19 +87,22 @@
     <div id="profileModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Изменить профиль</h2>
+            <h2>{{ profile.user.first_name }} {{ profile.user.last_name }}</h2>
             <form method="post" enctype="multipart/form-data" action="{% url 'update-profile' profile.slug %}">
                 {% csrf_token %}
-                <div>
-                    <label for="avatar">Аватар:</label>
-                    <input type="file" id="avatar" name="avatar">
+                <div class="avatar-section">
+                    <img src="{% if profile.avatar %}{{ profile.avatar.url }}{% else %}{% static 'main/img/user.svg' %}{% endif %}"
+                         alt="Profile Avatar">
+                    <label for="avatar" class="change-photo-button">Изменить фото</label>
+                    <input type="file" id="avatar" name="avatar" accept="image/*" style="display: none;">
                 </div>
-                <div>
-                    <label for="is_private">Закрытый профиль:</label>
-                    <input type="checkbox" id="is_private" name="is_private" {% if profile.is_private %}checked{% endif %}>
+                <div class="form-group">
+                    <label for="is_private">Скрыть аккаунт</label>
+                    <input type="checkbox" id="is_private" name="is_private"
+                           {% if profile.is_private %}checked{% endif %}>
                 </div>
-                <div>
-                    <button type="submit">Сохранить</button>
+                <div class="form-group">
+                    <button type="submit" class="save-button">Сохранить</button>
                 </div>
             </form>
         </div>
