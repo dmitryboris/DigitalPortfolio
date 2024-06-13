@@ -18,6 +18,7 @@ class Achievements(models.Model):
         ]
     )
     pub_date = models.DateTimeField(auto_now_add=True)
+    description = models.CharField(max_length=500, null=True)
     likes = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
 

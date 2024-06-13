@@ -1,14 +1,14 @@
 from django.contrib.auth.models import User
 
 from .models import Achievements, Profile
-from django.forms import ModelForm, TextInput, FileInput
+from django.forms import ModelForm, TextInput, FileInput, Textarea
 from django.utils.translation import gettext_lazy as _
 
 
 class AchievementForm(ModelForm):
     class Meta:
         model = Achievements
-        fields = ['title', 'preview', 'file']
+        fields = ['title', 'preview', 'file', 'description']
 
         widgets = {
             'title': TextInput(attrs={
@@ -20,7 +20,12 @@ class AchievementForm(ModelForm):
             }),
             'file': FileInput(attrs={
                 'class': 'field-preview',
-            })
+            }),
+            'description': Textarea(attrs={
+                'class': 'field-preview',
+                'placeholder': 'Добавьте описание (не больше 500 символов)'
+            }
+            )
         }
 
         # labels = {

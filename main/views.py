@@ -83,7 +83,7 @@ def increment_views(request, pk):
     achievement = Achievements.objects.get(pk=pk)
     achievement.views += 1
     achievement.save()
-    return redirect(achievement.file.url)
+    return redirect(reverse('achievement-detail', kwargs={'pk': pk}))
 
 
 @require_POST
@@ -121,3 +121,8 @@ def update_profile(request, slug):
 def redirect_home(request, pk):
     user = User.objects.get(pk=pk)
     return redirect(reverse('user-detail', kwargs={'slug': slugify(user.username)}))
+
+
+def achievement_detail(request, pk):
+    achievement = Achievements.objects.get(pk=pk)
+    return render(request, 'main/achievement.html', {'achievement': achievement})

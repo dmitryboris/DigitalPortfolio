@@ -12,7 +12,8 @@ urlpatterns = [
     path('increment-views/<int:pk>/', increment_views, name='increment-views'),
     path('toggle-like/<int:pk>/', toggle_like, name='toggle-like'),
     path('profile/<slug:slug>/update/', update_profile, name='update-profile'),
-    path('redirect-home/<int:pk>/', redirect_home, name='redirect-home')
+    path('redirect-home/<int:pk>/', redirect_home, name='redirect-home'),
+    path('achievements/<int:pk>/', achievement_detail, name='achievement-detail'),
 ]
 
 if settings.DEBUG:
