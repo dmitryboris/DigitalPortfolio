@@ -1,4 +1,4 @@
-{% load static %}
+{% load static custom_filters %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +10,18 @@
 </header>
 <main>
     <div class="file">
-        {{ achievement.file }}
+        {% if achievement.file.url|file_ext:".pdf" %}
+            <iframe src="{{ achievement.file.url }}" width="1000" height="700">
+                Ваш браузер не поддерживает встроенные PDF файлы. Вы можете <a href="{{ achievement.file.url }}">скачать файл</a>.
+            </iframe>
+        {% elif achievement.file.url|file_ext:".jpg" or achievement.file.url|file_ext:".jpeg" or achievement.file.url|file_ext:".png" %}
+            <img src="{{ achievement.file.url }}" alt="Image" width="1000" height="700">
+        {% elif achievement.file.url|file_ext:".ogg" or achievement.file.url|file_ext:".mp3" %}
+            <audio controls>
+                <source src="{{ achievement.file.url }}" type="audio/{{ achievement.file.url|slice:"-3" }}">
+                Ваш браузер не поддерживает элемент audio.
+            </audio>
+        {% endif %}
     </div>
     <div class="description">
         {{ achievement.description }}
