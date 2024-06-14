@@ -4,28 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ achievement.title }}</title>
+    <link rel="stylesheet" href="{% static 'main/css/achievement.css' %}">
 </head>
 <body>
 <header>
 </header>
 <main>
+    <h1>{{ achievement.title }}</h1>
     <div class="file">
         {% if achievement.file.url|file_ext:".pdf" %}
-            <iframe src="{{ achievement.file.url }}" width="1000" height="700">
-                Ваш браузер не поддерживает встроенные PDF файлы. Вы можете <a href="{{ achievement.file.url }}">скачать файл</a>.
+            <iframe src="{{ achievement.file.url }}">
+                Ваш браузер не поддерживает встроенные PDF файлы. Вы можете <a href="{{ achievement.file.url }}">скачать
+                файл</a>.
             </iframe>
         {% elif achievement.file.url|file_ext:".jpg" or achievement.file.url|file_ext:".jpeg" or achievement.file.url|file_ext:".png" %}
-            <img src="{{ achievement.file.url }}" alt="Image" width="1000" height="700">
+            <img src="{{ achievement.file.url }}" alt="Image">
         {% elif achievement.file.url|file_ext:".ogg" or achievement.file.url|file_ext:".mp3" %}
-            <audio controls>
-                <source src="{{ achievement.file.url }}" type="audio/{{ achievement.file.url|slice:"-3" }}">
-                Ваш браузер не поддерживает элемент audio.
+            <audio controls style="width: 100%; height: auto;">
+                {% if achievement.file.url|file_ext:".ogg" %}
+                <source src="{{ achievement.file.url }}" type="audio/ogg">
+                {% elif achievement.file.url|file_ext:".mp3" %}
+                <source src="{{ achievement.file.url }}" type="audio/mpeg">
+                {% endif %}
             </audio>
         {% endif %}
     </div>
+    <div class="information">
+        <div class="author">
+            Автор: {{ achievement.author.first_name }} {{ achievement.author.last_name }}
+        </div>
+        <div class="statistic">
+            <p class="likes">
+                <img src="{% static 'main/img/Like.svg' %}" width="19" height="19">
+                <span class="likes-count">{{ achievement.formatted_likes }}</span>
+            </p>
+            <p class="views">
+                <img src="{% static 'main/img/Eye.svg' %}" width="20" height="20">
+                {{ achievement.formatted_views }}
+            </p>
+        </div>
+    </div>
     <div class="description">
-        {{ achievement.description }}
+        {% if achievement.description %}
+            {{ achievement.description }}
+        {% else %}
+            Кажется, кто-то забыл оставить описание
+        {% endif %}
     </div>
 </main>
+<footer>
+    <div class="footer-content">
+        <p>© DigitalPortfolio, 2024</p>
+    </div>
+</footer>
 </body>
 </html>
