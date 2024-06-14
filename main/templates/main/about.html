@@ -15,12 +15,17 @@
             var modal = document.getElementById("profileModal");
             var btn = document.getElementById("profileIcon");
             var span = document.getElementsByClassName("close")[0];
-            btn.onclick = function() {
-                modal.style.display = "block";
+            if (btn) {
+                btn.onclick = function() {
+                    modal.style.display = "block";
+                }
             }
-            span.onclick = function() {
-                modal.style.display = "none";
+            if (span) {
+                span.onclick = function() {
+                    modal.style.display = "none";
+                }
             }
+
             window.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
@@ -32,6 +37,10 @@
                 button.addEventListener('click', (event) => {
                     const card = event.target.closest('.card');
                     const achievementId = card.dataset.achievementId;
+
+                    console.log('Button clicked:', event.target);  // Add this line
+                    console.log('Card found:', card);              // Add this line
+                    console.log('Achievement ID:', achievementId); // Add this line
 
                     fetch(`/toggle-like/${achievementId}/`, {
                         method: 'POST',
