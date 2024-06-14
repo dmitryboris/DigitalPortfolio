@@ -118,6 +118,18 @@ def update_profile(request, slug):
 
 
 @login_required
+@user_is_owner
+def hide_profile(request, slug):
+    profile = get_object_or_404(Profile, slug=slug)
+    if profile.is_private:
+        profile.is_private = False
+    else:
+        profile.is_private = True
+    profile.save()
+    return redirect(reverse('user-detail', kwargs={'slug': slug}))
+
+
+@login_required
 def redirect_home(request, pk):
     user = User.objects.get(pk=pk)
     return redirect(reverse('user-detail', kwargs={'slug': slugify(user.username)}))

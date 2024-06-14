@@ -45,20 +45,7 @@ class AchievementForm(ModelForm):
         return instance
 
 
-class SearchProfileForm(ModelForm):
-    class Meta:
-        model = Profile
-        fields = ['slug']
-
-        widgets = {
-            'slug': TextInput(attrs={
-                'class': 'field-title',
-                'placeholder': 'Ник пользователя'
-            })
-        }
-
-
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ['avatar', 'is_private']
+        fields = ['avatar']

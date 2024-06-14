@@ -96,12 +96,11 @@
                     <label for="avatar" class="change-photo-button">Изменить фото</label>
                     <input type="file" id="avatar" name="avatar" accept="image/*" style="display: none;">
                 </div>
-                <div class="form-group">
-                    <label for="is_private">Скрыть аккаунт</label>
-                    <input type="checkbox" id="is_private" name="is_private"
-                           {% if profile.is_private %}checked{% endif %}>
-                </div>
-                <div class="form-group">
+                <div class="modal-buttons">
+                    <a href="{% url 'hide-profile' profile.slug %}">
+                        <button class="hide-button" type="button">{{ user.profile.is_private|yesno:"Открыть профиль,Закрыть профиль" }}
+                        </button>
+                    </a>
                     <button type="submit" class="save-button">Сохранить</button>
                 </div>
             </form>
