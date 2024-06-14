@@ -167,6 +167,10 @@ input[type=text] {
     justify-content: start;
 }
 
+.likes img {
+    cursor: pointer;
+}
+
 .views {
     display: flex;
     align-self: center;

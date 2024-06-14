@@ -1,4 +1,4 @@
-{% load static %}
+{% load static custom_filters %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +27,7 @@
                 }
             }
 
-            const likeButtons = document.querySelectorAll('.likes img');
+            const likeButtons = document.querySelectorAll('.likes .current');
             likeButtons.forEach(button => {
                 button.addEventListener('click', (event) => {
                     const card = event.target.closest('.card');
@@ -37,7 +37,11 @@
                         method: 'POST',
                         headers: {
                             'X-CSRFToken': '{{ csrf_token }}',
+                            'Content-Type': 'application/json'
                         },
+                        body: JSON.stringify({
+                            'achievement_id': achievementId
+                        })
                     })
                     .then(response => response.json())
                     .then(data => {
@@ -48,7 +52,8 @@
                         } else {
                             event.target.src = '{% static "main/img/Like.svg" %}';
                         }
-                    });
+                    })
+                    .catch(error => console.error('Error:', error));
                 });
             });
         });
@@ -125,7 +130,11 @@
                     <p>{{ ach.pub_date|date:"d-m-Y" }}</p>
                     <div class="statistic">
                         <p class="likes">
-                            <img src="{% static 'main/img/Like.svg' %}" width="19" height="19">
+                            {% if request.user|liked:ach %}
+                                <img src="{% static 'main/img/RedLike.svg' %}" width="19" height="19" class="current" data-liked="true">
+                            {% else %}
+                                <img src="{% static 'main/img/Like.svg' %}" width="19" height="19" class="current" data-liked="false">
+                            {% endif %}
                             <span class="likes-count">{{ ach.formatted_likes }}</span>
                         </p>
                         <p class="views">
