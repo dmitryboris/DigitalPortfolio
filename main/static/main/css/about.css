@@ -238,7 +238,7 @@ input[type=text] {
     margin-bottom: 20px;
 }
 
-.avatar-section img {
+.avatar-section .avatar {
     border-radius: 50%;
     margin-right: 20px;
     width: 100px;
@@ -254,8 +254,17 @@ input[type=text] {
     cursor: pointer;
     text-decoration: none;
     background-color: #f0f0f0;
+    display: flex;
+    border: 1px solid rgba(0, 0, 0, 0.2)
 }
-
+.upload-avatar {
+    width: 18px;
+    height: 18px;
+    display: block;
+    margin: 0;
+    padding: 0;
+    margin-right: 8px;
+}
 .save-button {
     padding: 10px 20px;
     border: none;
@@ -281,5 +290,16 @@ input[type=text] {
     border-radius: 20px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #f0f0f0;
+    background-color: #FFFFFF;
+    display: flex;
+    border: 2px solid rgba(255, 63, 63, 1)
+}
+.modal-buttons a {
+    text-decoration: none;
+}
+.hide-profile-img {
+    display: block;
+    margin: 0;
+    padding: 0;
+    margin-right: 7px;
 }
