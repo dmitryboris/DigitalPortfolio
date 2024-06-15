@@ -114,7 +114,7 @@
                     <a href="{% url 'hide-profile' profile.slug %}">
                         <button class="hide-button" type="button">
                             {% if profile.is_private == True %}
-                                <img class="hide-profile-img" src="{% static 'main/img/Eye.png' %}" width="21" height="21">
+                                <img class="hide-profile-img" src="{% static 'main/img/Eye.svg' %}" width="21" height="21">
                             {% else %}
                                 <img class="hide-profile-img" src="{% static 'main/img/Eye Closed.svg' %}" width="21" height="21">
                             {% endif %}
