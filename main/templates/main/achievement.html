@@ -51,6 +51,9 @@
             Кажется, кто-то забыл оставить описание
         {% endif %}
     </div>
+    {% if request.user == achievement.author %}
+        <a href="{% url 'delete_achievement' pk=achievement.id slug=request.user.username %}">Удалить</a>
+    {% endif %}
 </main>
 <footer>
     <div class="footer-content">

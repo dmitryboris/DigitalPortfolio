@@ -15,6 +15,7 @@ urlpatterns = [
     path('profile/<slug:slug>/hide/', hide_profile, name='hide-profile'),
     path('redirect-home/<int:pk>/', redirect_home, name='redirect-home'),
     path('achievements/<int:pk>/', achievement_detail, name='achievement-detail'),
+    path('delete_achievement/<int:pk>/<slug:slug>', delete_achievement, name='delete_achievement'),
 ]
 
 if settings.DEBUG:

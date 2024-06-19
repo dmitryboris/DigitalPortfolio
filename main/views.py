@@ -138,3 +138,11 @@ def redirect_home(request, pk):
 def achievement_detail(request, pk):
     achievement = Achievements.objects.get(pk=pk)
     return render(request, 'main/achievement.html', {'achievement': achievement})
+
+
+@login_required
+@user_is_owner
+def delete_achievement(request, slug, pk):
+    achievement = Achievements.objects.get(pk=pk)
+    Achievements.delete(achievement)
+    return redirect(reverse('user-detail', kwargs={'slug': slug}))
