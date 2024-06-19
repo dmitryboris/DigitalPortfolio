@@ -52,7 +52,7 @@
         {% endif %}
     </div>
     {% if request.user == achievement.author %}
-        <a href="{% url 'delete_achievement' pk=achievement.id slug=request.user.username %}">Удалить</a>
+        <a class="ach-del-link" href="{% url 'delete_achievement' pk=achievement.id slug=request.user.username %}"><button class="delete-button">Удалить</button></a>
     {% endif %}
 </main>
 <footer>

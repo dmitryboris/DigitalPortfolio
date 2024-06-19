@@ -88,3 +88,26 @@ footer {
 .footer-content {
     text-align: center;
 }
+
+.delete-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #FF0000;
+    color: white;
+}
+
+.delete-button:hover {
+    background: #B22222;
+}
+.delete-button:active {
+    background: #FFA07A;
+}
+
+.ach-del-link {
+    display: block;
+    margin-left: 75px;
+    margin-bottom: 20px;
+}
